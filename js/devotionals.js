@@ -1,4 +1,4 @@
-// Business Devotionals content — edit this array to add, change, or reorder devotionals.
+// Business Devotionals content - edit this array to add, change, or reorder devotionals.
 // Each entry needs: text (2–3 sentences) and verse (Book chapter:verse).
 // The popup picks one at random on each page load.
 
@@ -28,7 +28,7 @@ const SEP_DEVOTIONALS = [
     verse: "Zechariah 4:10"
   },
   {
-    text: "Your network is part of your inheritance. Iron sharpens iron — surround yourself with people who sharpen your purpose.",
+    text: "Your network is part of your inheritance. Iron sharpens iron - surround yourself with people who sharpen your purpose.",
     verse: "Proverbs 27:17"
   },
   {
