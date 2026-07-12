@@ -2672,3 +2672,13 @@ img { max-width: 100%; display: block; }
   margin-top: 10px;
   display: none;
 }
+
+/* Track name shown below description in facilitator cards */
+.facilitator-track-subdesc {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 10px;
+}
