@@ -80,8 +80,55 @@ document.querySelectorAll('.amount-btn').forEach(btn => {
   });
 });
 
+// Netlify form AJAX handler — prevents page redirect, shows inline success
+function handleNotifyForm(formId, successId) {
+  const form = document.getElementById(formId);
+  const success = document.getElementById(successId);
+  if (!form) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    }).then(() => {
+      form.style.display = 'none';
+      if (success) success.classList.add('show');
+    }).catch(() => {
+      form.style.display = 'none';
+      if (success) success.classList.add('show');
+    });
+  });
+}
+handleNotifyForm('webinar-form', 'webinar-success');
+handleNotifyForm('career-form', 'career-success');
+handleNotifyForm('devos-banner-form', 'devos-banner-success');
+
+// Copy account number to clipboard (donate.html)
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const text = btn.dataset.copy;
+    if (!text) return;
+    const orig = btn.textContent;
+    const finish = () => {
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2200);
+    };
+    navigator.clipboard ? navigator.clipboard.writeText(text).then(finish).catch(finish) : (() => {
+      const ta = Object.assign(document.createElement('textarea'), { value: text });
+      Object.assign(ta.style, { position: 'fixed', opacity: '0' });
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      finish();
+    })();
+  });
+});
+
 // Scroll-triggered fade-in
-const fadeEls = document.querySelectorAll('.growth-year, .about-item, .skill-card, .speaker-card, .day-card, .testi-card, .program-card, .blog-card, .day-session-card, .about-stat-card, .stage-card, .facilitator-card');
+const fadeEls = document.querySelectorAll('.growth-year, .about-item, .skill-card, .speaker-card, .day-card, .testi-card, .program-card, .blog-card, .day-session-card, .about-stat-card, .stage-card, .facilitator-card, .impact-point');
 if (fadeEls.length) {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -176,3 +223,61 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     }
   });
 });
+
+// ============ BUSINESS DEVOTIONAL POPUP ============
+// In-memory flag — resets on page load (intentional, privacy-friendly)
+(function () {
+  let dismissed = false;
+
+  function buildPopup() {
+    const list = (typeof SEP_DEVOTIONALS !== 'undefined' && SEP_DEVOTIONALS.length)
+      ? SEP_DEVOTIONALS : null;
+    if (!list || dismissed) return;
+
+    const devo = list[Math.floor(Math.random() * list.length)];
+
+    const popup = document.createElement('div');
+    popup.id = 'devos-popup';
+    popup.className = 'devos-popup';
+    popup.setAttribute('role', 'complementary');
+    popup.setAttribute('aria-label', 'Business Devotional');
+
+    popup.innerHTML =
+      '<div class="devos-popup-header">' +
+        '<span class="devos-popup-label">Business Devotional</span>' +
+        '<button class="devos-popup-close" aria-label="Close devotional">&times;</button>' +
+      '</div>' +
+      '<p class="devos-popup-text">' + devo.text + '</p>' +
+      '<div class="devos-popup-verse">' + devo.verse + '</div>' +
+      '<a href="#devos-form" class="devos-popup-cta">Get weekly devotionals →</a>';
+
+    document.body.appendChild(popup);
+
+    // Animate in (double rAF ensures the initial state is painted first)
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { popup.classList.add('show'); });
+    });
+
+    function dismiss() {
+      dismissed = true;
+      popup.classList.remove('show');
+      popup.classList.add('hide');
+      setTimeout(function () { if (popup.parentNode) popup.parentNode.removeChild(popup); }, 350);
+    }
+
+    popup.querySelector('.devos-popup-close').addEventListener('click', dismiss);
+
+    // CTA: smooth-scroll to footer signup then close
+    popup.querySelector('.devos-popup-cta').addEventListener('click', function (e) {
+      e.preventDefault();
+      dismiss();
+      var target = document.getElementById('devos-form');
+      if (target) {
+        var top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  }
+
+  setTimeout(buildPopup, 8000);
+}());
