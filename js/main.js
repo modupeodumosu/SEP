@@ -103,6 +103,7 @@ function handleNotifyForm(formId, successId) {
 handleNotifyForm('webinar-form', 'webinar-success');
 handleNotifyForm('career-form', 'career-success');
 handleNotifyForm('devos-banner-form', 'devos-banner-success');
+handleNotifyForm('hub-waitlist', 'hub-waitlist-success');
 
 // Copy account number to clipboard (donate.html)
 document.querySelectorAll('.copy-btn').forEach(btn => {

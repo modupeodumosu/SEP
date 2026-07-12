@@ -3189,3 +3189,17 @@ img { max-width: 100%; display: block; }
   .devos-popup.show { transform: translateY(0); }
   .devos-popup.hide { transform: translateY(100%); }
 }
+
+/* Hub audience grid (2-col variant of hub-how-grid) */
+.hub-audience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+@media (max-width: 640px) { .hub-audience-grid { grid-template-columns: 1fr; } }
+
+/* Hub waitlist section — stack on mobile */
+@media (max-width: 860px) {
+  .hub-waitlist-inner { grid-template-columns: 1fr !important; gap: 48px !important; }
+}
