@@ -81,7 +81,7 @@ document.querySelectorAll('.amount-btn').forEach(btn => {
 });
 
 // Scroll-triggered fade-in
-const fadeEls = document.querySelectorAll('.growth-year, .about-item, .skill-card, .speaker-card, .day-card, .testi-card, .program-card, .blog-card, .day-session-card, .about-stat-card');
+const fadeEls = document.querySelectorAll('.growth-year, .about-item, .skill-card, .speaker-card, .day-card, .testi-card, .program-card, .blog-card, .day-session-card, .about-stat-card, .stage-card, .facilitator-card');
 if (fadeEls.length) {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
