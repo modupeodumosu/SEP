@@ -2538,8 +2538,7 @@ img { max-width: 100%; display: block; }
   color: var(--paper);
   letter-spacing: -0.02em;
   line-height: 1.2;
-  flex-grow: 1;
-  margin-bottom: 32px;
+  margin-bottom: 12px;
   font-variation-settings: "opsz" 144;
 }
 .stage-card-speakers {
@@ -2598,29 +2597,30 @@ img { max-width: 100%; display: block; }
 
 .facilitator-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 60px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 52px;
 }
-@media (max-width: 720px) { .facilitator-grid { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .facilitator-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .facilitator-grid { grid-template-columns: 1fr; } }
 
 .facilitator-card {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 20px;
-  padding: 28px;
+  padding: 22px;
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 14px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .facilitator-card:hover {
   border-color: var(--sage);
-  box-shadow: 0 4px 24px rgba(15, 62, 29, 0.07);
+  box-shadow: 0 4px 20px rgba(15, 62, 29, 0.07);
 }
 .facilitator-avatar {
-  width: 72px;
-  height: 72px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   flex-shrink: 0;
   overflow: hidden;
@@ -2636,33 +2636,52 @@ img { max-width: 100%; display: block; }
 .fav-5 { background: linear-gradient(155deg, var(--forest-deep) 0%, var(--sage) 100%); }
 .fav-6 { background: linear-gradient(155deg, var(--sage) 0%, var(--lime) 100%); }
 
-.facilitator-body { flex: 1; min-width: 0; }
+.facilitator-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
 .facilitator-track-tag {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--forest);
+  color: var(--muted);
+  order: 1;
   margin-bottom: 4px;
 }
-.facilitator-track-desc {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.5;
-  padding-bottom: 14px;
-  margin-bottom: 14px;
-  border-bottom: 1px solid var(--line);
+/* Track name is the headline — visually first */
+.facilitator-track-subdesc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--forest-deep);
+  letter-spacing: -0.01em;
+  text-transform: none;
+  margin: 0 0 2px;
+  order: 0;
 }
 .facilitator-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--forest-deep);
-  margin-bottom: 2px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 0;
+  order: 2;
 }
 .facilitator-role {
+  font-size: 12px;
+  color: var(--muted);
+  order: 3;
+}
+.facilitator-track-desc {
   font-size: 13px;
   color: var(--muted);
-  /* Add role/title here when confirmed */
+  line-height: 1.55;
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid var(--line);
+  order: 4;
 }
 /* Bio: hidden until real content is ready — remove display:none to show */
 .facilitator-bio {
@@ -2671,16 +2690,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
   margin-top: 10px;
   display: none;
-}
-
-/* Track name shown below description in facilitator cards */
-.facilitator-track-subdesc {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 10px;
+  order: 5;
 }
 
 /* ============ SPEAKERS PAGE HERO (2-col layout) ============ */
@@ -2743,7 +2753,7 @@ img { max-width: 100%; display: block; }
   font-size: 14px;
   color: rgba(250, 248, 241, 0.6);
   line-height: 1.75;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 /* ============ EVENTS PAGE — PROGRAMME SECTIONS ============ */
@@ -3335,3 +3345,50 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--line);
 }
 .webinar-card-cta.cta-watch:hover { background: var(--forest-deep); color: var(--paper); border-color: var(--forest-deep); }
+
+/* ============ SPEAKERS PAGE — PER-DAY STAGE CARD ACCENTS ============ */
+.stage-card:nth-child(1) {
+  border-top: 3px solid var(--lime);
+  background: rgba(140, 198, 63, 0.05);
+}
+.stage-card:nth-child(2) {
+  border-top: 3px solid var(--amber);
+  background: rgba(217, 164, 65, 0.05);
+}
+.stage-card:nth-child(3) {
+  border-top: 3px solid var(--sage);
+  background: rgba(221, 229, 200, 0.05);
+}
+/* Day 2 amber accent */
+.stage-card:nth-child(2) .stage-card-tag { color: var(--amber); }
+.stage-card:nth-child(2) .stage-card-tag::before { background: var(--amber); }
+.stage-card:nth-child(2) .stage-card-date-num { color: var(--amber); }
+/* Day 3 sage accent */
+.stage-card:nth-child(3) .stage-card-tag { color: var(--sage); }
+.stage-card:nth-child(3) .stage-card-tag::before { background: var(--sage); }
+.stage-card:nth-child(3) .stage-card-date-num { color: var(--sage); }
+
+/* ============ PANELIST AVATAR CLUSTER (Day 3) ============ */
+.stage-panelist-cluster {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cluster-avatars {
+  display: flex;
+  flex-direction: row;
+}
+.cluster-avatars .stage-avatar {
+  margin-left: -10px;
+  border: 2px solid var(--forest-deep);
+  box-sizing: content-box;
+}
+.cluster-avatars .stage-avatar:first-child { margin-left: 0; }
+
+/* ============ FACILITATOR CARD COLOR ACCENTS ============ */
+.facilitator-card:has(.fav-1) { border-top: 3px solid var(--lime); }
+.facilitator-card:has(.fav-2) { border-top: 3px solid var(--sage); }
+.facilitator-card:has(.fav-3) { border-top: 3px solid var(--amber); }
+.facilitator-card:has(.fav-4) { border-top: 3px solid var(--amber-deep); }
+.facilitator-card:has(.fav-5) { border-top: 3px solid var(--forest); }
+.facilitator-card:has(.fav-6) { border-top: 3px solid var(--lime-glow); }
