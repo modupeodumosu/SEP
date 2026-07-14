@@ -97,6 +97,92 @@
   </div>
 </section>
 
+<!-- ============ WEBINAR SESSIONS CAROUSEL ============ -->
+<!-- To add a new session: copy one .webinar-card block, update the image src, date, title, speaker, and CTA.
+     Past sessions: use class="webinar-card-cta cta-watch" linking to the YouTube channel.
+     Upcoming sessions: use class="webinar-card-cta cta-register" linking to the registration link.
+     Replace [SEP-YOUTUBE-PLACEHOLDER] with the real YouTube channel URL before going live. -->
+<section style="padding: 80px 0; background: var(--forest-deep);">
+  <div class="container">
+    <div class="webinar-carousel-header">
+      <div>
+        <div class="section-label" style="color: var(--lime);">Webinar Series · 2026</div>
+        <h2 style="font-family: var(--font-display); font-size: clamp(26px, 3vw, 40px); font-weight: 500; color: var(--paper); letter-spacing: -0.025em; line-height: 1.1; margin: 0; font-variation-settings: 'opsz' 144;">Sessions from this year.</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 14px; flex-shrink: 0;">
+        <div class="webinar-nav-btns">
+          <button class="webinar-nav-btn" id="webinar-prev" aria-label="Previous session">&#8592;</button>
+          <button class="webinar-nav-btn" id="webinar-next" aria-label="Next session">&#8594;</button>
+        </div>
+        <!-- Replace [SEP-YOUTUBE-PLACEHOLDER] with the real channel URL -->
+        <a href="[SEP-YOUTUBE-PLACEHOLDER]" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: rgba(250,248,241,.5); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap;">Watch all on YouTube &#8599;</a>
+      </div>
+    </div>
+
+    <div class="webinar-track-wrap">
+      <div class="webinar-track" id="webinar-track">
+
+        <!-- UPCOMING — July 18 -->
+        <div class="webinar-card">
+          <div class="webinar-card-img">
+            <img src="assets/webinars/webinar-automation.png" alt="Switch from Manual to Automation - July 18 webinar flyer" loading="lazy">
+            <span class="webinar-card-pill next-up">Next Up &middot; Jul 18</span>
+          </div>
+          <div class="webinar-card-body">
+            <div class="webinar-card-date">July 18, 2026 &middot; 8:30am</div>
+            <div class="webinar-card-title">Switch from Manual to Automation</div>
+            <div class="webinar-card-speaker">Ayobami Fadeni &middot; Senior Software Engineer</div>
+            <a href="https://bit.ly/SEPBusinessAutomation" target="_blank" rel="noopener" class="webinar-card-cta cta-register">Register free &#8594;</a>
+          </div>
+        </div>
+
+        <!-- PAST — June 20 -->
+        <div class="webinar-card">
+          <div class="webinar-card-img">
+            <img src="assets/webinars/webinar-business-growth.png" alt="Organizing Your Business for Growth - June webinar flyer" loading="lazy">
+            <span class="webinar-card-pill recorded">Recorded</span>
+          </div>
+          <div class="webinar-card-body">
+            <div class="webinar-card-date">June 20, 2026 &middot; 8:30am</div>
+            <div class="webinar-card-title">Organizing Your Business for Growth</div>
+            <div class="webinar-card-speaker">Ndidi Azaah &middot; Founder, Zuriel Business Solutions</div>
+            <a href="[SEP-YOUTUBE-PLACEHOLDER]" target="_blank" rel="noopener" class="webinar-card-cta cta-watch">Watch recording &#8594;</a>
+          </div>
+        </div>
+
+        <!-- PAST — May 16 -->
+        <div class="webinar-card">
+          <div class="webinar-card-img">
+            <img src="assets/webinars/webinar-loans-grants.png" alt="Accessing Loans and Grants for Your Business - May webinar flyer" loading="lazy">
+            <span class="webinar-card-pill recorded">Recorded</span>
+          </div>
+          <div class="webinar-card-body">
+            <div class="webinar-card-date">May 16, 2026 &middot; 8:30am</div>
+            <div class="webinar-card-title">Accessing Loans and Grants for Your Business</div>
+            <div class="webinar-card-speaker">Victoria Duru &middot; CEO, Wakamedics</div>
+            <a href="[SEP-YOUTUBE-PLACEHOLDER]" target="_blank" rel="noopener" class="webinar-card-cta cta-watch">Watch recording &#8594;</a>
+          </div>
+        </div>
+
+        <!-- PAST — January 24 -->
+        <div class="webinar-card">
+          <div class="webinar-card-img">
+            <img src="assets/webinars/webinar-tax-law.jpg" alt="Understanding the New Tax Law - January webinar flyer" loading="lazy">
+            <span class="webinar-card-pill recorded">Recorded</span>
+          </div>
+          <div class="webinar-card-body">
+            <div class="webinar-card-date">January 24, 2026 &middot; 8:30am</div>
+            <div class="webinar-card-title">Understanding the New Tax Law</div>
+            <div class="webinar-card-speaker">Mena Ujiri &middot; Tax Consultant, AccountsandData</div>
+            <a href="[SEP-YOUTUBE-PLACEHOLDER]" target="_blank" rel="noopener" class="webinar-card-cta cta-watch">Watch recording &#8594;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PROGRAMME 02 - CAREER FAIR ============ -->
 <!-- Edit this section to update career fair dates, details, and the notification form -->
 <section class="program-section" style="background: var(--paper-warm);">

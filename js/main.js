@@ -225,6 +225,32 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
+// ============ WEBINAR CAROUSEL ============
+(function () {
+  var track = document.getElementById('webinar-track');
+  if (!track) return;
+  var cards = Array.from(track.querySelectorAll('.webinar-card'));
+  var prevBtn = document.getElementById('webinar-prev');
+  var nextBtn = document.getElementById('webinar-next');
+  var current = 0;
+
+  function perPage() {
+    return window.innerWidth >= 900 ? 3 : window.innerWidth >= 580 ? 2 : 1;
+  }
+  function maxIdx() { return Math.max(0, cards.length - perPage()); }
+  function update() {
+    var gap = 20;
+    var cardW = cards[0].offsetWidth + gap;
+    track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+    if (prevBtn) prevBtn.disabled = current === 0;
+    if (nextBtn) nextBtn.disabled = current >= maxIdx();
+  }
+  if (prevBtn) prevBtn.addEventListener('click', function () { current = Math.max(0, current - 1); update(); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { current = Math.min(maxIdx(), current + 1); update(); });
+  window.addEventListener('resize', function () { current = Math.min(current, maxIdx()); update(); });
+  update();
+}());
+
 // ============ BUSINESS DEVOTIONAL POPUP ============
 // In-memory flag — resets on page load (intentional, privacy-friendly)
 (function () {
