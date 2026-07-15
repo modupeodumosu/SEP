@@ -46,18 +46,92 @@ if (devosForm) {
   });
 }
 
-// Registration form (prototype)
+// Registration form — POST to Google Apps Script
+var REG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyP0sMkxCmzmNqnZ0H_0UeZrEIVeINoDjnxi7NH7xyHwhM_LvjT2gtMs5DGb6dbriNc9A/exec';
+
 const regForm = document.getElementById('registration-form');
 const regSuccess = document.getElementById('success');
 if (regForm) {
-  regForm.addEventListener('submit', e => {
+  regForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    const content = document.querySelector('.reg-form-content');
-    if (content) content.style.display = 'none';
-    if (regSuccess) {
-      regSuccess.classList.add('show');
-      regSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    var fFirstName = regForm.querySelector('[name="firstName"]');
+    var fLastName  = regForm.querySelector('[name="lastName"]');
+    var fEmail     = regForm.querySelector('[name="email"]');
+    var fPhone     = regForm.querySelector('[name="phone"]');
+    var fTrack     = regForm.querySelector('[name="skillTrack"]');
+    var fHeard     = regForm.querySelector('[name="heardAbout"]');
+    var submitBtn  = regForm.querySelector('.form-submit');
+    var submitErr  = document.getElementById('reg-submit-error');
+
+    // Clear previous error states
+    regForm.querySelectorAll('.form-field-error').forEach(function (el) {
+      el.textContent = '';
+      el.classList.remove('show');
+    });
+    regForm.querySelectorAll('.is-error').forEach(function (el) {
+      el.classList.remove('is-error');
+    });
+    if (submitErr) { submitErr.innerHTML = ''; submitErr.classList.remove('show'); }
+
+    // Inline field validation
+    var valid = true;
+    function fieldError(input, msg) {
+      valid = false;
+      input.classList.add('is-error');
+      var el = input.parentElement.querySelector('.form-field-error');
+      if (el) { el.textContent = msg; el.classList.add('show'); }
     }
+
+    if (!fFirstName.value.trim()) fieldError(fFirstName, 'First name is required.');
+    if (!fLastName.value.trim())  fieldError(fLastName,  'Last name is required.');
+    if (!fEmail.value.trim()) {
+      fieldError(fEmail, 'Email address is required.');
+    } else if (!fEmail.value.includes('@')) {
+      fieldError(fEmail, 'Enter a valid email address.');
+    }
+    if (!fPhone.value.trim()) fieldError(fPhone, 'Phone number is required.');
+
+    if (!valid) return;
+
+    // Disable button while in flight
+    var origHTML = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Reserving...';
+
+    fetch(REG_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        firstName:  fFirstName.value.trim(),
+        lastName:   fLastName.value.trim(),
+        email:      fEmail.value.trim(),
+        phone:      fPhone.value.trim(),
+        skillTrack: fTrack.value,
+        heardAbout: fHeard.value
+      })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data.result === 'success') {
+        var content = document.querySelector('.reg-form-content');
+        if (content) content.style.display = 'none';
+        if (regSuccess) {
+          regSuccess.classList.add('show');
+          regSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else {
+        throw new Error('result not success');
+      }
+    })
+    .catch(function () {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = origHTML;
+      if (submitErr) {
+        submitErr.innerHTML = 'Something went wrong. Please try again, or email <a href="mailto:hello@seedempowermentprogram.com">hello@seedempowermentprogram.com</a>.';
+        submitErr.classList.add('show');
+      }
+    });
   });
 }
 
