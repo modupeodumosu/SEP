@@ -1433,7 +1433,7 @@ img { max-width: 100%; display: block; }
 }
 .sponsor-row {
   display: grid;
-  grid-template-columns: 100px 1fr auto;
+  grid-template-columns: 100px 1fr;
   gap: 20px;
   align-items: center;
   padding: 20px 0;
@@ -3508,3 +3508,113 @@ img { max-width: 100%; display: block; }
 .facilitator-card:has(.fav-4) { border-top: 3px solid var(--amber-deep); }
 .facilitator-card:has(.fav-5) { border-top: 3px solid var(--forest); }
 .facilitator-card:has(.fav-6) { border-top: 3px solid var(--lime-glow); }
+
+/* ================================================================
+   MOBILE RESPONSIVE OVERRIDES
+   Strategy: content-first breakpoints, fluid type via clamp(),
+   progressive reduction of spacing and padding.
+     ≤ 640px  — phones and small tablets
+     ≤ 480px  — Pixel 6a (412px CSS width) and smaller
+   ================================================================ */
+
+/* ======== ≤ 640px ======== */
+@media (max-width: 640px) {
+
+  /* Section vertical rhythm — 120px → 72px */
+  .growth, .about, .programs, .skills, .speakers,
+  .schedule, .testimonials, .gallery, .sponsors,
+  .faq, .register, .three-days { padding: 72px 0; }
+
+  .about-sep, .main-stage, .facilitators { padding: 64px 0; }
+  .program-section { padding: 60px 0; }
+
+  .hero { padding: 108px 0 52px; }
+  .page-hero { padding: 108px 0 56px; }
+
+  /* Body copy */
+  .section-sub { font-size: 16px; margin-bottom: 40px; }
+  .hero p.lead { font-size: 16px; margin-bottom: 32px; }
+  .page-hero p.lead { font-size: 16px; }
+  .hero-trust { margin-top: 28px; }
+
+  /* Stat numbers */
+  .stat-item .stat-num { font-size: 40px; }
+
+  /* Gallery */
+  .gallery-carousel { margin-top: 36px; }
+  .gallery-video-heading-row { margin-top: 56px; }
+  .gallery-video-heading { font-size: 22px; }
+}
+
+/* ======== ≤ 480px (Pixel 6a = 412px) ======== */
+@media (max-width: 480px) {
+
+  /* Section vertical rhythm — tighter still */
+  .growth, .about, .programs, .skills, .speakers,
+  .schedule, .testimonials, .gallery, .sponsors,
+  .faq, .register, .three-days { padding: 56px 0; }
+
+  .about-sep, .main-stage, .facilitators { padding: 48px 0; }
+  .program-section { padding: 44px 0; }
+
+  .hero { padding: 96px 0 44px; }
+  .page-hero { padding: 96px 0 44px; }
+
+  /* Fluid display type — scales with viewport, not hard jumps */
+  .hero h1                { font-size: clamp(32px, 8.5vw, 84px); }
+  .section-title          { font-size: clamp(28px, 7.5vw, 64px); }
+  .page-hero h1           { font-size: clamp(30px, 8vw, 72px); }
+  .section-sub            { font-size: 15px; margin-bottom: 32px; }
+
+  /* Large numerals — clamp so they never overflow their container */
+  .growth-number          { font-size: clamp(56px, 15vw, 96px); }
+  .date-numerals          { font-size: clamp(52px, 13vw, 128px); }
+  .date-month             { font-size: 19px; margin-bottom: 20px; }
+  .stat-item .stat-num    { font-size: 36px; }
+  .hub-stat-num           { font-size: 44px; }
+  .about-stat-num         { font-size: 38px; }
+
+  /* Remove scale(1.05) on future card — clips at full-width single column */
+  .growth-year.future {
+    transform: none;
+    box-shadow: 0 16px 40px -12px rgba(15, 62, 29, 0.4);
+  }
+
+  /* FAQ */
+  .faq-question { font-size: 17px; gap: 12px; padding: 18px 0; }
+  .faq-answer   { font-size: 15px; }
+
+  /* Card internal padding — proportional reduction */
+  .date-card         { padding: 28px 22px; }
+  .growth-year       { padding: 28px 22px; }
+  .day-card          { padding: 24px 20px; }
+  .day-card-marker   { left: 20px; }
+  .day-session-card  { padding: 24px 20px; }
+  .testi-card        { padding: 24px 20px; }
+  .testi-body        { font-size: 17px; }
+  .reg-form          { padding: 24px 20px; }
+  .hub-feature       { padding: 28px 20px; }
+  .sponsors-tiers    { padding: 20px; }
+  .sponsor-row       { padding: 14px 0; gap: 12px; }
+  .sponsor-tier-name { font-size: 17px; }
+  .notify-card       { padding: 28px 22px; }
+
+  /* Hero CTAs — stack and stretch to full width */
+  .hero-ctas          { flex-direction: column; align-items: stretch; }
+  .hero-ctas .btn     { justify-content: center; }
+
+  /* Footer — single column at this width */
+  .footer-grid   { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; gap: 8px; align-items: flex-start; }
+
+  /* Growth stats spacing */
+  .growth-stats { margin-top: 44px; padding-top: 36px; gap: 20px 16px; }
+
+  /* Section layout gaps */
+  .about-grid      { gap: 36px; }
+  .about-sep-inner { gap: 32px; }
+
+  /* Gallery video row */
+  .gallery-video-heading { font-size: 20px; }
+  .gallery-yt-link       { font-size: 13px; padding: 8px 14px; }
+}
