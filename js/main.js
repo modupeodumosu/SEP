@@ -284,6 +284,64 @@ document.querySelectorAll('.lite-yt').forEach(el => {
   });
 });
 
+// ============ MAILTO HANDLER ============
+// Triggers the OS/browser mail handler AND copies address to clipboard
+// so desktop users without a configured mail client still get the address.
+(function () {
+  function showEmailCopied(link) {
+    var tip = document.createElement('span');
+    tip.textContent = 'Email copied ✓';
+    var rect = link.getBoundingClientRect();
+    tip.style.cssText = [
+      'position:fixed',
+      'left:' + Math.round(rect.left + rect.width / 2) + 'px',
+      'top:' + Math.round(rect.top - 40) + 'px',
+      'transform:translateX(-50%)',
+      'background:var(--forest-deep)',
+      'color:#fff',
+      'font-family:var(--font-mono)',
+      'font-size:11px',
+      'letter-spacing:.05em',
+      'padding:5px 14px',
+      'border-radius:20px',
+      'white-space:nowrap',
+      'pointer-events:none',
+      'z-index:9999',
+      'opacity:1',
+      'transition:opacity .35s ease'
+    ].join(';');
+    document.body.appendChild(tip);
+    setTimeout(function () { tip.style.opacity = '0'; }, 1600);
+    setTimeout(function () { if (tip.parentNode) tip.parentNode.removeChild(tip); }, 2000);
+  }
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      var href = link.getAttribute('href');
+      var email = href.replace('mailto:', '').split('?')[0];
+
+      // Open mail app or configured web mail handler
+      window.location.href = href;
+
+      // Copy address to clipboard as fallback for desktop without a mail client
+      try {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(email).then(function () { showEmailCopied(link); }).catch(function () {});
+        } else {
+          var ta = Object.assign(document.createElement('textarea'), { value: email });
+          Object.assign(ta.style, { position: 'fixed', opacity: '0' });
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          showEmailCopied(link);
+        }
+      } catch (err) {}
+    });
+  });
+}());
+
 // Smooth-scroll offset for fixed nav
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
