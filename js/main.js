@@ -299,6 +299,32 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
+// ============ GALLERY PHOTO CAROUSEL ============
+(function () {
+  var track = document.getElementById('gallery-track');
+  if (!track) return;
+  var items = Array.from(track.querySelectorAll('.gallery-item'));
+  var prevBtn = document.getElementById('gallery-prev');
+  var nextBtn = document.getElementById('gallery-next');
+  var current = 0;
+
+  function perPage() {
+    return window.innerWidth >= 900 ? 4 : window.innerWidth >= 500 ? 2 : 1;
+  }
+  function maxIdx() { return Math.max(0, items.length - perPage()); }
+  function update() {
+    var gap = 14;
+    var cardW = items[0].offsetWidth + gap;
+    track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+    if (prevBtn) prevBtn.disabled = current === 0;
+    if (nextBtn) nextBtn.disabled = current >= maxIdx();
+  }
+  if (prevBtn) prevBtn.addEventListener('click', function () { current = Math.max(0, current - 1); update(); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { current = Math.min(maxIdx(), current + 1); update(); });
+  window.addEventListener('resize', function () { current = Math.min(current, maxIdx()); update(); });
+  update();
+}());
+
 // ============ WEBINAR CAROUSEL ============
 (function () {
   var track = document.getElementById('webinar-track');
