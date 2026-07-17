@@ -128,7 +128,7 @@ if (regForm) {
       submitBtn.disabled = false;
       submitBtn.innerHTML = origHTML;
       if (submitErr) {
-        submitErr.innerHTML = 'Something went wrong. Please try again, or email <a href="mailto:hello@seedempowermentprogram.com" target="_blank">hello@seedempowermentprogram.com</a>.';
+        submitErr.innerHTML = 'Something went wrong. Please try again, or email <a href="mailto:hello@seedempowermentprogram.com">hello@seedempowermentprogram.com</a>.';
         submitErr.classList.add('show');
       }
     });
