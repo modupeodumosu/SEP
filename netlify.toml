@@ -1,2 +1,9 @@
 [build]
   publish = "."
+
+# Redirect Netlify subdomain to the canonical custom domain
+[[redirects]]
+  from   = "https://sepwebsite.netlify.app/*"
+  to     = "https://www.seedempowermentprogram.com/:splat"
+  status = 301
+  force  = true
