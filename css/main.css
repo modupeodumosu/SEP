@@ -3223,23 +3223,20 @@ img { max-width: 100%; display: block; }
 }
 .devos-popup-cta:hover { background: var(--forest); }
 
-/* Bottom sheet on mobile */
+/* Floating card on mobile — side margins, fully rounded */
 @media (max-width: 600px) {
   .devos-popup {
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    width: auto;
     max-width: none;
-    border-radius: 20px 20px 0 0;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    border-top: 2px solid var(--amber);
-    transform: translateY(100%);
+    border-radius: 18px;
+    border: 1.5px solid var(--amber);
+    transform: translateY(calc(100% + 24px));
   }
   .devos-popup.show { transform: translateY(0); }
-  .devos-popup.hide { transform: translateY(100%); }
+  .devos-popup.hide { transform: translateY(calc(100% + 24px)); }
 }
 
 /* Hub audience grid (2-col variant of hub-how-grid) */
