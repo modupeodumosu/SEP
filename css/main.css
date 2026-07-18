@@ -1,5 +1,5 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 :root {
   --forest: #0F3E1D;
@@ -3532,7 +3532,10 @@ img { max-width: 100%; display: block; }
   .section-sub { font-size: 16px; margin-bottom: 40px; }
   .hero p.lead { font-size: 16px; margin-bottom: 32px; }
   .page-hero p.lead { font-size: 16px; }
-  .hero-trust { margin-top: 28px; }
+
+  /* Trust badge — wrap dots + text onto two lines if needed */
+  .hero-trust { margin-top: 28px; flex-wrap: wrap; gap: 10px 14px; }
+  .hero-trust > span { font-size: 12px; flex: 1 1 200px; min-width: 0; }
 
   /* Stat numbers */
   .stat-item .stat-num { font-size: 40px; }
@@ -3600,9 +3603,17 @@ img { max-width: 100%; display: block; }
   .hero-ctas          { flex-direction: column; align-items: stretch; }
   .hero-ctas .btn     { justify-content: center; }
 
+  /* Trust dots — slightly smaller to save horizontal space */
+  .trust-dot { width: 28px; height: 28px; font-size: 10px; }
+
   /* Footer — single column at this width */
   .footer-grid   { grid-template-columns: 1fr; gap: 28px; }
   .footer-bottom { flex-direction: column; gap: 8px; align-items: flex-start; }
+
+  /* Footer newsletter — tighter internal padding, clear outer gap from screen edge */
+  .footer-newsletter { padding: 22px 18px; margin-bottom: 40px; border-radius: 16px; }
+  .footer-newsletter-label { font-size: 10px; }
+  .footer-newsletter-sub { font-size: 14px; }
 
   /* Growth stats spacing */
   .growth-stats { margin-top: 44px; padding-top: 36px; gap: 20px 16px; }
