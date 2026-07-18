@@ -434,7 +434,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       '</div>' +
       '<p class="devos-popup-text">' + devo.text + '</p>' +
       '<div class="devos-popup-verse">' + devo.verse + '</div>' +
-      '<a href="#devos-form" class="devos-popup-cta">Get weekly devotionals →</a>';
+      '<a href="#devos-form" class="devos-popup-cta">Get devotionals twice a month →</a>';
 
     document.body.appendChild(popup);
 
