@@ -323,7 +323,7 @@ img { max-width: 100%; display: block; }
 .date-card {
   background: var(--forest-deep);
   color: var(--paper);
-  padding: 40px;
+  padding: 40px 60px 40px 40px;
   border-radius: 24px;
   position: relative;
   overflow: hidden;
