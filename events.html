@@ -72,24 +72,154 @@
           <span class="theme-pill-dot"></span>
           <span class="theme-pill-name">Switch from Manual to Automation</span>
         </div>
-        <p style="font-size: 13px; color: var(--muted); margin-top: 12px;">Topic, date, and joining link sent to your inbox before every session - just add your email below.</p>
+        <p style="font-size: 13px; color: var(--muted); margin-top: 12px;">Register links are shared on each session's flyer - next session August 15.</p>
       </div>
 
       <div>
-        <div class="notify-card">
-          <div class="notify-card-badge">Get notified</div>
-          <div class="notify-card-heading">Be the first to know about the next session.</div>
-          <p class="notify-card-sub">We'll send you the topic, date, and joining link before every webinar. One email per month - no noise.</p>
+        <div class="notify-card" style="padding: 0; overflow: hidden;">
+          <svg viewBox="0 0 430 420" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;" aria-label="Illustration of a live online webinar with participants joining remotely">
 
-          <form id="webinar-form" name="webinar-interest" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="webinar-interest">
-            <div class="form-row">
-              <label class="form-label" for="webinar-email">Email address</label>
-              <input type="email" id="webinar-email" name="email" class="form-input" required placeholder="you@example.com">
-            </div>
-            <button type="submit" class="btn-lime" style="width: 100%; margin-top: 12px;">Notify me →</button>
-          </form>
-          <div id="webinar-success" class="notify-success">✓ You're on the list. Next session details coming your way.</div>
+            <!-- Floating avatar — top left -->
+            <circle cx="38" cy="76" r="28" fill="#1A4A28" stroke="#8CC63F" stroke-width="1.5"/>
+            <circle cx="38" cy="70" r="13" fill="#8CC63F" opacity="0.35"/>
+            <ellipse cx="38" cy="90" rx="16" ry="9" fill="#8CC63F" opacity="0.2"/>
+
+            <!-- Floating avatar — top right -->
+            <circle cx="392" cy="62" r="30" fill="#1A4A28" stroke="#8CC63F" stroke-width="1.5"/>
+            <circle cx="392" cy="55" r="14" fill="#D4860C" opacity="0.4"/>
+            <ellipse cx="392" cy="76" rx="17" ry="9" fill="#D4860C" opacity="0.2"/>
+
+            <!-- Floating avatar — bottom right -->
+            <circle cx="390" cy="256" r="24" fill="#1A4A28" stroke="#8CC63F" stroke-width="1.5"/>
+            <circle cx="390" cy="250" r="11" fill="#8CC63F" opacity="0.4"/>
+            <ellipse cx="390" cy="266" rx="14" ry="7" fill="#8CC63F" opacity="0.22"/>
+
+            <!-- Floating avatar — bottom left -->
+            <circle cx="36" cy="250" r="20" fill="#1A4A28" stroke="#8CC63F" stroke-width="1"/>
+            <circle cx="36" cy="244" r="9" fill="#D4860C" opacity="0.35"/>
+            <ellipse cx="36" cy="260" rx="12" ry="6" fill="#D4860C" opacity="0.18"/>
+
+            <!-- Dashed connection lines from avatars to laptop -->
+            <line x1="62" y1="78" x2="78" y2="95" stroke="#8CC63F" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.25"/>
+            <line x1="364" y1="70" x2="352" y2="90" stroke="#8CC63F" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.25"/>
+            <line x1="368" y1="246" x2="352" y2="230" stroke="#8CC63F" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.25"/>
+            <line x1="56" y1="244" x2="74" y2="228" stroke="#8CC63F" stroke-width="0.8" stroke-dasharray="4 4" opacity="0.2"/>
+
+            <!-- Laptop outer bezel -->
+            <rect x="68" y="38" width="294" height="198" rx="14" fill="#061510"/>
+            <!-- Screen display -->
+            <rect x="80" y="50" width="270" height="174" rx="6" fill="#0D2416"/>
+
+            <!-- Screen: main presenter tile -->
+            <rect x="88" y="58" width="172" height="130" rx="4" fill="#172E1C"/>
+
+            <!-- Presenter silhouette (face + shoulders) -->
+            <circle cx="174" cy="98" r="26" fill="#1E3F24"/>
+            <circle cx="174" cy="91" r="15" fill="#8CC63F" opacity="0.28"/>
+            <ellipse cx="174" cy="122" rx="22" ry="11" fill="#8CC63F" opacity="0.18"/>
+
+            <!-- Name bar at bottom of presenter tile -->
+            <rect x="92" y="174" width="100" height="10" rx="5" fill="#0D2416"/>
+            <rect x="96" y="177" width="54" height="4" rx="2" fill="#8CC63F" opacity="0.45"/>
+
+            <!-- LIVE badge on presenter tile -->
+            <rect x="92" y="62" width="46" height="16" rx="8" fill="#8CC63F"/>
+            <circle cx="102" cy="70" r="3" fill="#0F3E1D"/>
+            <text x="108" y="74" font-family="'SF Mono','Fira Mono',monospace" font-size="7" font-weight="700" fill="#0F3E1D" letter-spacing="1.2">LIVE</text>
+
+            <!-- Screen: side participant panel -->
+            <rect x="266" y="58" width="76" height="130" rx="4" fill="#0A1C0F"/>
+
+            <!-- Participant tile 1 -->
+            <rect x="270" y="62" width="68" height="36" rx="3" fill="#172E1C"/>
+            <circle cx="284" cy="80" r="9" fill="#8CC63F" opacity="0.38"/>
+            <rect x="296" y="75" width="36" height="4" rx="2" fill="#FAF8F1" opacity="0.15"/>
+            <rect x="296" y="82" width="24" height="3" rx="1.5" fill="#FAF8F1" opacity="0.1"/>
+
+            <!-- Participant tile 2 -->
+            <rect x="270" y="102" width="68" height="36" rx="3" fill="#172E1C"/>
+            <circle cx="284" cy="120" r="9" fill="#D4860C" opacity="0.45"/>
+            <rect x="296" y="115" width="36" height="4" rx="2" fill="#FAF8F1" opacity="0.15"/>
+            <rect x="296" y="122" width="24" height="3" rx="1.5" fill="#FAF8F1" opacity="0.1"/>
+
+            <!-- Participant tile 3 -->
+            <rect x="270" y="142" width="68" height="36" rx="3" fill="#172E1C"/>
+            <circle cx="284" cy="160" r="9" fill="#8CC63F" opacity="0.3"/>
+            <rect x="296" y="155" width="36" height="4" rx="2" fill="#FAF8F1" opacity="0.15"/>
+            <rect x="296" y="162" width="24" height="3" rx="1.5" fill="#FAF8F1" opacity="0.1"/>
+
+            <!-- Screen controls bar -->
+            <rect x="80" y="192" width="270" height="30" rx="4" fill="#061510"/>
+            <!-- Mic icon circle -->
+            <circle cx="168" cy="207" r="10" fill="#1A3A22"/>
+            <rect x="165" y="201" width="6" height="10" rx="3" fill="#8CC63F" opacity="0.6"/>
+            <path d="M162 209 Q165 214 171 209" stroke="#8CC63F" stroke-width="1" fill="none" opacity="0.6"/>
+            <!-- Video cam icon circle -->
+            <circle cx="196" cy="207" r="10" fill="#1A3A22"/>
+            <rect x="191" y="203" width="8" height="8" rx="2" fill="#8CC63F" opacity="0.5"/>
+            <path d="M199 205 L203 202 L203 212 L199 209 Z" fill="#8CC63F" opacity="0.5"/>
+            <!-- Share icon circle -->
+            <circle cx="224" cy="207" r="10" fill="#1A3A22"/>
+            <rect x="220" y="203" width="8" height="8" rx="2" stroke="#8CC63F" stroke-width="1" fill="none" opacity="0.5"/>
+            <path d="M224 203 L224 198 M221 201 L224 198 L227 201" stroke="#8CC63F" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <!-- End call button -->
+            <rect x="244" y="200" width="38" height="14" rx="7" fill="#C0392B" opacity="0.75"/>
+            <path d="M252 207 Q256 204 262 207" stroke="#FAF8F1" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+            <!-- Laptop hinge -->
+            <rect x="62" y="236" width="306" height="8" rx="3" fill="#040E07"/>
+            <!-- Keyboard base -->
+            <rect x="34" y="242" width="362" height="22" rx="6" fill="#0A1C0E"/>
+            <!-- Keyboard rows (decorative lines) -->
+            <rect x="46" y="247" width="220" height="3" rx="1.5" fill="#122018" opacity="0.7"/>
+            <rect x="46" y="253" width="200" height="3" rx="1.5" fill="#122018" opacity="0.7"/>
+            <rect x="46" y="259" width="180" height="3" rx="1.5" fill="#122018" opacity="0.5"/>
+            <!-- Trackpad -->
+            <rect x="185" y="247" width="60" height="14" rx="4" fill="#061510"/>
+
+            <!-- Decorative scatter dots -->
+            <circle cx="122" cy="30" r="3" fill="#8CC63F" opacity="0.2"/>
+            <circle cx="134" cy="24" r="2" fill="#8CC63F" opacity="0.12"/>
+            <circle cx="110" cy="22" r="2" fill="#8CC63F" opacity="0.12"/>
+            <circle cx="308" cy="32" r="2.5" fill="#D4860C" opacity="0.18"/>
+            <circle cx="320" cy="26" r="1.5" fill="#D4860C" opacity="0.12"/>
+
+            <!-- Divider -->
+            <line x1="60" y1="300" x2="370" y2="300" stroke="#8CC63F" stroke-width="0.5" opacity="0.18"/>
+
+            <!-- Caption label -->
+            <text x="215" y="328" text-anchor="middle" font-family="'SF Mono','Fira Mono',monospace" font-size="10" font-weight="600" fill="#8CC63F" letter-spacing="2.5" opacity="0.9">MONTHLY · FREE · ONLINE</text>
+
+            <!-- Caption subtext -->
+            <text x="215" y="352" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="13.5" fill="#FAF8F1" opacity="0.5">Join from anywhere in Nigeria and beyond.</text>
+
+            <!-- Bottom icon trio: calendar, play, people -->
+            <!-- Calendar -->
+            <g transform="translate(150, 368)" opacity="0.4">
+              <rect width="22" height="20" rx="3" stroke="#8CC63F" stroke-width="1.5" fill="none"/>
+              <line x1="0" y1="7" x2="22" y2="7" stroke="#8CC63F" stroke-width="1.5"/>
+              <line x1="7" y1="0" x2="7" y2="5" stroke="#8CC63F" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="15" y1="0" x2="15" y2="5" stroke="#8CC63F" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="7" cy="13.5" r="1.8" fill="#8CC63F"/>
+              <circle cx="11" cy="13.5" r="1.8" fill="#8CC63F"/>
+              <circle cx="15" cy="13.5" r="1.8" fill="#8CC63F"/>
+            </g>
+
+            <!-- Play button -->
+            <g transform="translate(200, 367)" opacity="0.4">
+              <circle cx="11" cy="11" r="11" stroke="#8CC63F" stroke-width="1.5" fill="none"/>
+              <path d="M8.5 7 L8.5 15 L16 11 Z" fill="#8CC63F"/>
+            </g>
+
+            <!-- People icon -->
+            <g transform="translate(232, 368)" opacity="0.4">
+              <circle cx="8" cy="6" r="5" stroke="#8CC63F" stroke-width="1.5" fill="none"/>
+              <path d="M0 19 Q8 15 16 19" stroke="#8CC63F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <circle cx="19" cy="7" r="4" stroke="#8CC63F" stroke-width="1.2" fill="none"/>
+              <path d="M14 19 Q19 16 25 18" stroke="#8CC63F" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            </g>
+
+          </svg>
         </div>
       </div>
 
