@@ -366,7 +366,7 @@ img { max-width: 100%; display: block; }
 .date-numerals {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(72px, 10vw, 128px);
+  font-size: clamp(64px, 6.5vw, 84px);
   line-height: 0.85;
   letter-spacing: -0.05em;
   color: var(--paper);
