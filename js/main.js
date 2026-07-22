@@ -361,52 +361,101 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 (function () {
   var track = document.getElementById('gallery-track');
   if (!track) return;
+  var carousel = track.closest('.gallery-carousel');
   var items = Array.from(track.querySelectorAll('.gallery-item'));
-  var prevBtn = document.getElementById('gallery-prev');
-  var nextBtn = document.getElementById('gallery-next');
   var current = 0;
+  var timer = null;
 
-  function perPage() {
-    return window.innerWidth >= 900 ? 4 : window.innerWidth >= 500 ? 2 : 1;
-  }
+  function perPage() { return window.innerWidth >= 900 ? 4 : window.innerWidth >= 500 ? 2 : 1; }
   function maxIdx() { return Math.max(0, items.length - perPage()); }
-  function update() {
-    var gap = 14;
-    var cardW = items[0].offsetWidth + gap;
-    track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
-    if (prevBtn) prevBtn.disabled = current === 0;
-    if (nextBtn) nextBtn.disabled = current >= maxIdx();
+
+  function goTo(idx) {
+    current = Math.min(Math.max(0, idx), maxIdx());
+    track.style.transform = 'translateX(-' + (current * (items[0].offsetWidth + 14)) + 'px)';
+    document.querySelectorAll('.gallery-dots .carousel-dot').forEach(function (d, i) {
+      d.classList.toggle('active', i === current);
+    });
   }
-  if (prevBtn) prevBtn.addEventListener('click', function () { current = Math.max(0, current - 1); update(); });
-  if (nextBtn) nextBtn.addEventListener('click', function () { current = Math.min(maxIdx(), current + 1); update(); });
-  window.addEventListener('resize', function () { current = Math.min(current, maxIdx()); update(); });
-  update();
+
+  function buildDots() {
+    var old = carousel.querySelector('.gallery-dots');
+    if (old) old.remove();
+    var max = maxIdx();
+    if (max < 1) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'carousel-dots gallery-dots';
+    for (var i = 0; i <= max; i++) {
+      var btn = document.createElement('button');
+      btn.className = 'carousel-dot' + (i === current ? ' active' : '');
+      btn.setAttribute('aria-label', 'Slide ' + (i + 1));
+      (function (idx) { btn.addEventListener('click', function () { goTo(idx); resetTimer(); }); }(i));
+      wrap.appendChild(btn);
+    }
+    carousel.appendChild(wrap);
+  }
+
+  function advance() { goTo(current >= maxIdx() ? 0 : current + 1); }
+  function resetTimer() { clearInterval(timer); timer = setInterval(advance, 4000); }
+
+  carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
+  carousel.addEventListener('mouseleave', resetTimer);
+
+  window.addEventListener('resize', function () { current = Math.min(current, maxIdx()); buildDots(); goTo(current); });
+
+  buildDots();
+  goTo(0);
+  resetTimer();
 }());
 
 // ============ WEBINAR CAROUSEL ============
 (function () {
   var track = document.getElementById('webinar-track');
   if (!track) return;
+  var section = track.closest('section');
+  var trackWrap = track.parentElement;
   var cards = Array.from(track.querySelectorAll('.webinar-card'));
-  var prevBtn = document.getElementById('webinar-prev');
-  var nextBtn = document.getElementById('webinar-next');
   var current = 0;
+  var timer = null;
 
-  function perPage() {
-    return window.innerWidth >= 900 ? 3 : window.innerWidth >= 580 ? 2 : 1;
-  }
+  function perPage() { return window.innerWidth >= 900 ? 3 : window.innerWidth >= 580 ? 2 : 1; }
   function maxIdx() { return Math.max(0, cards.length - perPage()); }
-  function update() {
-    var gap = 20;
-    var cardW = cards[0].offsetWidth + gap;
-    track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
-    if (prevBtn) prevBtn.disabled = current === 0;
-    if (nextBtn) nextBtn.disabled = current >= maxIdx();
+
+  function goTo(idx) {
+    current = Math.min(Math.max(0, idx), maxIdx());
+    track.style.transform = 'translateX(-' + (current * (cards[0].offsetWidth + 20)) + 'px)';
+    document.querySelectorAll('.webinar-dots .carousel-dot').forEach(function (d, i) {
+      d.classList.toggle('active', i === current);
+    });
   }
-  if (prevBtn) prevBtn.addEventListener('click', function () { current = Math.max(0, current - 1); update(); });
-  if (nextBtn) nextBtn.addEventListener('click', function () { current = Math.min(maxIdx(), current + 1); update(); });
-  window.addEventListener('resize', function () { current = Math.min(current, maxIdx()); update(); });
-  update();
+
+  function buildDots() {
+    var old = section.querySelector('.webinar-dots');
+    if (old) old.remove();
+    var max = maxIdx();
+    if (max < 1) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'carousel-dots webinar-dots';
+    for (var i = 0; i <= max; i++) {
+      var btn = document.createElement('button');
+      btn.className = 'carousel-dot' + (i === current ? ' active' : '');
+      btn.setAttribute('aria-label', 'Slide ' + (i + 1));
+      (function (idx) { btn.addEventListener('click', function () { goTo(idx); resetTimer(); }); }(i));
+      wrap.appendChild(btn);
+    }
+    trackWrap.after(wrap);
+  }
+
+  function advance() { goTo(current >= maxIdx() ? 0 : current + 1); }
+  function resetTimer() { clearInterval(timer); timer = setInterval(advance, 4000); }
+
+  section.addEventListener('mouseenter', function () { clearInterval(timer); });
+  section.addEventListener('mouseleave', resetTimer);
+
+  window.addEventListener('resize', function () { current = Math.min(current, maxIdx()); buildDots(); goTo(current); });
+
+  buildDots();
+  goTo(0);
+  resetTimer();
 }());
 
 // ============ BUSINESS DEVOTIONAL POPUP ============
